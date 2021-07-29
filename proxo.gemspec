@@ -8,17 +8,17 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Keegan Leitz"]
   spec.email         = ["kjleitz@gmail.com"]
 
-  spec.summary       = "TODO: Write a short summary, because RubyGems requires one."
-  spec.description   = "TODO: Write a longer description or delete this line."
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = "Proxy one port to another port, and intercept/transform/log inbound and outbound TCP messages."
+  spec.description   = "Proxy one port to another port, and intercept/transform/log inbound and outbound TCP messages."
+  spec.homepage      = "https://github.com/kjleitz/proxo"
   spec.license       = "MIT"
-  spec.required_ruby_version = Gem::Requirement.new(">= 2.4.0")
+  spec.required_ruby_version = Gem::Requirement.new(">= 2.6.0")
 
-  spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
+  spec.metadata["allowed_push_host"] = "https://rubygems.org"
 
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "TODO: Put your gem's public repo URL here."
-  spec.metadata["changelog_uri"] = "TODO: Put your gem's CHANGELOG.md URL here."
+  spec.metadata["source_code_uri"] = "https://github.com/kjleitz/proxo"
+  spec.metadata["documentation_uri"] = "https://www.rubydoc.info/gems/proxo/#{Proxo::VERSION}"
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.

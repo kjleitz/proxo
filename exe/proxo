@@ -1,3 +1,51 @@
 #!/usr/bin/env ruby
 
 require "proxo"
+require "optparse"
+
+options = {}
+
+arguments_parser = OptionParser.new do |opts|
+  opts.banner = "Usage: proxo [options]"
+
+  opts.on("-h", "--help", "Show this help message") do
+    puts opts
+    exit
+  end
+
+  opts.on("-v", "--verbose", TrueClass,
+          "Log all data received and republished, as well as lifecycle events") do |verbose|
+    options[:verbose] = verbose
+  end
+
+  opts.on("-iINPUT_HOST", "--input-host INPUT_HOST", "Host to listen to (default: 127.0.0.1)") do |input_host|
+    options[:input_host] = input_host
+  end
+
+  opts.on(:REQUIRED, "-pINPUT_PORT", "--input-port INPUT_PORT", Integer, "Port to listen on (required)") do |input_port|
+    options[:input_port] = input_port
+  end
+
+  opts.on("-oOUTPUT_HOST", "--output-host OUTPUT_HOST", "Host to republish to (default: 127.0.0.1)") do |output_host|
+    options[:output_host] = output_host
+  end
+
+  opts.on("-qOUTPUT_PORT", "--output-port OUTPUT_PORT", Integer,
+          "Port to republish to (will NOT republish if no output port is given)") do |output_port|
+    options[:output_port] = output_port
+  end
+
+  opts.on("-lLOG_FILE", "--log LOG_FILE", "File to log to (default: logs to STDOUT)") do |log_file|
+    logger = Logger.new(log_file)
+    logger.level = Logger::INFO
+    options[:logger] = logger
+  end
+end
+
+arguments_parser.parse!
+
+raise OptionParser::MissingArgument, "--input-port (see --help for details)" if options[:input_port].nil?
+
+proxomaton = Proxo::Proxomaton.new(**options)
+
+proxomaton.start!

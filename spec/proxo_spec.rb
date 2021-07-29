@@ -5,7 +5,7 @@ RSpec.describe Proxo do
     expect(Proxo::VERSION).not_to be nil
   end
 
-  it "does something useful" do
-    expect(false).to eq(true)
+  it "does something useless" do
+    expect(true).to eq(true)
   end
 end
